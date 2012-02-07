@@ -1,0 +1,9 @@
+#!/usr/bin/perl 
+use strict;
+use warnings;
+my $jobs_dir = "/tmp/scq_jobs";
+unless(-d $jobs_dir){
+    mkdir $jobs_dir;
+}
+my $id = time . int(rand 10000);
+system('echo "'.$ARGV[0].'" >> '.$jobs_dir.'/'.$id);

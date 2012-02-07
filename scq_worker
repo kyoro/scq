@@ -1,0 +1,17 @@
+#!/usr/bin/perl
+my $jobs_dir = "/tmp/scq_jobs";
+unless(-d $jobs_dir){
+    mkdir $jobs_dir;
+}
+while(1){
+    my @jobs = glob $jobs_dir."/*";
+    foreach my $job (@jobs){
+      open(FH,"<".$job);
+      my $line = <FH>;
+      close(FH);
+      unlink $job;
+      chomp($line);
+      system($line);
+    }
+    sleep(1);
+}
